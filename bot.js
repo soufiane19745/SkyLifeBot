@@ -585,7 +585,20 @@ client.on("message", message => {
    message.channel.send({embed});
       }
   });
-  
+ 
+client.on('message', message => {
+   if(message.content.startsWith("#invites")) {
+    message.guild.fetchInvites().then(invs => {
+      let user = message.mentions.users.first() || message.author
+      let personalInvites = invs.filter(i => i.inviter.id === user.id);
+      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+message.channel.send(`${user} has **${inviteCount}** invites.`);
+});
+  }
+});
+
+
+ 
    client.on('message',function(message) {
   if (message.author.bot) return;
                   if(!message.channel.guild) return;
@@ -2818,13 +2831,24 @@ ${serverQueue.songs.map(song => `**${++index} -** ${song.title}`).join('\n')}
 client.on("message", (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
  
+ const prefix = "-";
+const token = "NTQ4OTIwOTYwMTI0NzE1MDMy.D1hFRw.ASlBGJ8da9_LeBm4uJSz8mKhki0";
+ 
+client.on("ready", () => {
+  console.log("AK  | Logged in! Server count: ${client.guilds.size}");
+});
+ 
+ 
+client.on("message", (message) => {
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+ 
   if (message.content.toLowerCase().startsWith(prefix + `help`)) { //فديتكم كلكم FRAS GAMER
     const embed = new Discord.RichEmbed()
-    .setTitle(`:mailbox_with_mail: FRASGAMER Help`)
+    .setTitle(`:mailbox_with_mail: AK Help`)
     .setColor(0xCF40FA)
-    .setDescription(`مرحبا! أنا FRASGAMER ، و Discord commands=بوت لأشياء تذكرة دعم أكثر من رائع وأكثر! وهنا أوامر بلدي:`)
+    .setDescription(`مرحبا! أنا AK ، و Discord commands=بوت لأشياء تذكرة دعم أكثر من رائع وأكثر! وهنا أوامر بلدي:`)
     .addField(`Tickets`, `[${prefix}new]() > Opens up a new ticket and tags the Support Team\n[${prefix}close]() > Closes a ticket that has been resolved or been opened by accident`)
-    .addField(`Other`, `[${prefix}help]() > Shows you this help menu your reading\n[${prefix}ping]() > Pings the bot to see how long it takes to react\n[${prefix}about]() > Tells you all about FRAS#9999`)
+    .addField(`Other`, `[${prefix}help]() > Shows you this help menu your reading\n[${prefix}ping]() > Pings the bot to see how long it takes to react\n[${prefix}about]() > Tells you all about AK`)
     message.channel.send({ embed: embed });
   }
  
@@ -2883,6 +2907,12 @@ if (message.content.toLowerCase().startsWith(prefix + `close`)) {
 }
  
 });
+ 
+//client.login(NTQ4OTIwOTYwMTI0NzE1MDMy.D1hFRw.ASlBGJ8da9_LeBm4uJSz8mKhki0);
+ 
+ 
+ 
+client.login(process.env.BOT_TOKEN);
  
 
 
