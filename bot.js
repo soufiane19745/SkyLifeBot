@@ -2830,6 +2830,13 @@ ${serverQueue.songs.map(song => `**${++index} -** ${song.title}`).join('\n')}
 
 client.on("message", (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
+  
+  function clean(text) {
+    if (typeof(text) === "string")
+      return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+    else
+        return text;
+}
  
  const prefix = "s";
 const token = "NTQ4OTIwOTYwMTI0NzE1MDMy.D1hFRw.ASlBGJ8da9_LeBm4uJSz8mKhki0";
