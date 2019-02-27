@@ -2831,7 +2831,7 @@ ${serverQueue.songs.map(song => `**${++index} -** ${song.title}`).join('\n')}
 client.on("message", (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
  
- const prefix = "-";
+ const prefix = "s";
 const token = "NTQ4OTIwOTYwMTI0NzE1MDMy.D1hFRw.ASlBGJ8da9_LeBm4uJSz8mKhki0";
  
 client.on("ready", () => {
@@ -2842,7 +2842,7 @@ client.on("ready", () => {
 client.on("message", (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
  
-  if (message.content.toLowerCase().startsWith(prefix + `help`)) { //فديتكم كلكم FRAS GAMER
+  if (message.content.toLowerCase().startsWith(prefix + `help`)) { //فديتكم كلكم AK
     const embed = new Discord.RichEmbed()
     .setTitle(`:mailbox_with_mail: AK Help`)
     .setColor(0xCF40FA)
